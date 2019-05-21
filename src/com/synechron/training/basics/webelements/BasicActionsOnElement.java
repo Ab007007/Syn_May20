@@ -1,4 +1,4 @@
-package com.synechron.training.webelements;
+package com.synechron.training.basics.webelements;
 
 import java.util.concurrent.TimeUnit;
 
