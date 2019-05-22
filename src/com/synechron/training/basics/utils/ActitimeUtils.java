@@ -2,10 +2,27 @@ package com.synechron.training.basics.utils;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ActitimeUtils extends DriverUtils
 {
 
+	public static void createCustomer(String customerName,String customerDesc)
+	{
+		typeOnElement("id", "customerLightBox_nameField", customerName);
+		typeOnElement("id", "customerLightBox_descriptionField", customerDesc);
+		clickOnElement("xpath", "//div[@id='customerLightBox_commitBtn']");
+		
+		WebDriverWait wait  = new WebDriverWait(driver, 10);
+		WebElement successMsg = wait.until(ExpectedConditions.visibilityOf(getMyElement("xpath", "//div[@class='toast']")));
+		
+		System.out.println(successMsg.getText());
+		
+		WebDriverWait wait2 = new WebDriverWait(driver, 10);
+		wait2.until(ExpectedConditions.invisibilityOf(getMyElement("xpath", "//div[@class='toast']")));
+	}
 	
 	public static void launchApplication(String url)
 	{

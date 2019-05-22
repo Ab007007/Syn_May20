@@ -25,6 +25,8 @@ public class HandlingChildBrowser {
 		String parentID = it.next();
 		String childID = it.next();
 		
+		System.out.println("Patent ID --> " + parentID);
+		System.out.println("Chile ID --> " + childID);
 		driver.switchTo().window(childID);
 		
 		List<WebElement> emailIDs = driver.findElements(By.xpath("//a"));

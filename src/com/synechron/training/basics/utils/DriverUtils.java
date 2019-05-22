@@ -11,6 +11,11 @@ public class DriverUtils {
 
 	public static WebDriver driver = null;
 
+	/**
+	 * getMyDriver function returns a chrome driver to a Test
+	 * @author Aravind
+	 * @return webdriver
+	 */
 	public static WebDriver getMyDriver() {
 		System.out.println("Creating a webdriver object");
 		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
