@@ -16,12 +16,11 @@ public class ActitimeUtils extends DriverUtils
 		clickOnElement("xpath", "//div[@id='customerLightBox_commitBtn']");
 		
 		WebDriverWait wait  = new WebDriverWait(driver, 10);
-		WebElement successMsg = wait.until(ExpectedConditions.visibilityOf(getMyElement("xpath", "//div[@class='toast']")));
-		
+		WebElement successMsg = wait.until(ExpectedConditions.visibilityOf
+				(getMyElement("xpath", "//div[@class='toast']")));
 		System.out.println(successMsg.getText());
-		
-		WebDriverWait wait2 = new WebDriverWait(driver, 10);
-		wait2.until(ExpectedConditions.invisibilityOf(getMyElement("xpath", "//div[@class='toast']")));
+		wait.until(ExpectedConditions.invisibilityOf(getMyElement
+				("xpath", "//div[@class='toast']")));
 	}
 	
 	public static void launchApplication(String url)

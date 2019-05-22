@@ -1,5 +1,8 @@
 package com.synechron.training.basics.utils;
 
+import java.io.File;
+import java.io.FileReader;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -11,6 +14,30 @@ public class DriverUtils {
 
 	public static WebDriver driver = null;
 
+	public static String getConfigValue(String key)
+	{
+		String str = null;
+		try
+		{
+			File f = new File("data\\config.properties");
+			FileReader fr = new FileReader(f);
+			Properties props = new Properties();
+			
+			props.load(fr);
+			
+			str = props.getProperty(key);
+			
+			fr.close();
+		}
+		catch(Exception ex )
+		{
+			System.out.println("Exception while reading file....");
+		}
+		
+		return str;
+	}
+	
+	
 	/**
 	 * getMyDriver function returns a chrome driver to a Test
 	 * @author Aravind

@@ -7,17 +7,17 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.synechron.training.basics.utils.ActitimeUtils;
 
-public class CreateCustomerTest extends ActitimeUtils
+public class CreateCustomerUsingExternalData extends ActitimeUtils
 {
 
 	public static void main(String[] args) 
 	{
 		WebDriver driver = getMyDriver();
-		launchApplication("http://localhost/login.do");
-		loginToActitime("admin", "manager");
+		launchApplication(getConfigValue("url"));
+		loginToActitime(getConfigValue("username"), getConfigValue("password"));
 		clickOnTasks();
 		clickOnCreateCutomerButton();
-		createCustomer("customer3","customer2Desc");
+		createCustomer("customer4","customer4Desc");
 		clickOnElement("id", "logoutLink");
 	}
 
