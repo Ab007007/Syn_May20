@@ -59,7 +59,10 @@ public class ActitimeUtils extends DriverUtils
 		}
 	}
 	
-	
+	public static void logout()
+	{
+		clickOnElement("id", "logoutLink");
+	}
 	public static void clickOnTasks()
 	{
 		clickOnElement("xpath", "//a[div[text()='TASKS']]");
