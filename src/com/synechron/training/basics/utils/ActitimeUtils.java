@@ -42,4 +42,17 @@ public class ActitimeUtils extends DriverUtils
 			e.printStackTrace();
 		}
 	}
+	
+	
+	public static void clickOnTasks()
+	{
+		clickOnElement("xpath", "//a[div[text()='TASKS']]");
+	}
+	
+	public static void clickOnCreateCutomerButton()
+	{
+		clickOnElement("xpath", "//div[@class='addNewContainer']");
+		clickOnElement("xpath", "//div[contains(text(),'New Customer')]");
+		
+	}
 }
