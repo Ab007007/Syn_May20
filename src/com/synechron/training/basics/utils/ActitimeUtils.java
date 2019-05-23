@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 public class ActitimeUtils extends DriverUtils
 {
@@ -35,14 +36,7 @@ public class ActitimeUtils extends DriverUtils
 	{
 		String actualTitle = driver.getTitle();
 		
-		if(actualTitle.equals(expectedTitle))
-		{
-			System.out.println("PASS - Title is matched " + actualTitle);
-		}
-		else
-		{
-			System.out.println("**FAIL** - Expected " + expectedTitle + " but found " + actualTitle);
-		}
+		Assert.assertEquals(actualTitle, expectedTitle);
 	}
 	
 	public  static void loginToActitime(String un, String pwd)
@@ -60,16 +54,21 @@ public class ActitimeUtils extends DriverUtils
 	}
 	
 	
-	public static void createProject(String customerName, String projectName, String projectDescription ) throws InterruptedException {
+	public static void createProject(String customerName, String projectName, String projectDescription ){
 		typeOnElement("id", "projectPopup_projectNameField",projectName);
-		clickOnElement("xpath", "//button[text()='-- Please Select Customer to Add Project for  --']");
+		clickOnElement("id", "projectPopup_customerSelectorPlaceholder");
 		
 		WebDriverWait wait1 = new WebDriverWait(driver, 10);
-		wait1.until(ExpectedConditions.elementToBeClickable(getMyElement("xpath", "//a[text()='"+customerName+"']")));
+		WebElement ele = wait1.until(ExpectedConditions.elementToBeClickable(getMyElement("xpath", "//a[text()='"+customerName+"']")));
 		
-		clickOnElement("xpath", "//a[text()='"+customerName+"']");		
+		ele.click();		
 		typeOnElement("id", "projectPopup_projectDescriptionField",projectDescription);
-		Thread.sleep(2000);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		clickOnElement("id", "projectPopup_commitBtn");
 		
 		WebElement successMsg = wait1.until(ExpectedConditions.visibilityOf(getMyElement("xpath", "//div[@class='toast']")));
