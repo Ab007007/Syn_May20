@@ -59,6 +59,29 @@ public class ActitimeUtils extends DriverUtils
 		}
 	}
 	
+	
+	public static void createProject(String customerName, String projectName, String projectDescription ) throws InterruptedException {
+		typeOnElement("id", "projectPopup_projectNameField",projectName);
+		clickOnElement("xpath", "//button[text()='-- Please Select Customer to Add Project for  --']");
+		
+		WebDriverWait wait1 = new WebDriverWait(driver, 10);
+		wait1.until(ExpectedConditions.elementToBeClickable(getMyElement("xpath", "//a[text()='"+customerName+"']")));
+		
+		clickOnElement("xpath", "//a[text()='"+customerName+"']");		
+		typeOnElement("id", "projectPopup_projectDescriptionField",projectDescription);
+		Thread.sleep(2000);
+		clickOnElement("id", "projectPopup_commitBtn");
+		
+		WebElement successMsg = wait1.until(ExpectedConditions.visibilityOf(getMyElement("xpath", "//div[@class='toast']")));
+		System.out.println(successMsg.getText());
+		
+		wait1.until(ExpectedConditions.invisibilityOf(getMyElement("xpath", "//div[@class='toast']")));
+	
+	}
+	
+	
+	
+	
 	public static void logout()
 	{
 		clickOnElement("id", "logoutLink");
@@ -66,12 +89,26 @@ public class ActitimeUtils extends DriverUtils
 	public static void clickOnTasks()
 	{
 		clickOnElement("xpath", "//a[div[text()='TASKS']]");
+		validateTitle("actiTIME - Task List");
+	}
+	
+	public static void clickOnTT()
+	{
+		clickOnElement("xpath", "//a[div[text()='TIME-TRACK']]");
+		validateTitle("actiTIME - Enter Time-Track");
 	}
 	
 	public static void clickOnCreateCutomerButton()
 	{
 		clickOnElement("xpath", "//div[@class='addNewContainer']");
 		clickOnElement("xpath", "//div[contains(text(),'New Customer')]");
+		
+	}
+	
+	public static void clickOnCreateProjectButton()
+	{
+		clickOnElement("xpath", "//div[@class='addNewContainer']");
+		clickOnElement("xpath", "//div[contains(text(),'New Project')]");
 		
 	}
 }
