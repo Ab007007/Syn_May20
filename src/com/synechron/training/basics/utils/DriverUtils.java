@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DriverUtils {
 
@@ -47,6 +48,29 @@ public class DriverUtils {
 		System.out.println("Creating a webdriver object");
 		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
 		driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+
+		return driver;
+
+	}
+	
+	public static WebDriver getMyDriver(String type) {
+		System.out.println("Creating a webdriver object for "  +type);
+		switch (type) {
+		case "ff":
+			System.setProperty("webdriver.gecko.driver", "drivers/geckodriver.exe");
+			driver = new FirefoxDriver();
+			break;
+		case "chrome" :
+			System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
+			driver = new ChromeDriver();
+			break;
+		default:
+			System.out.println("Please contact Framework developers for other browsers..");
+			break;
+			
+		}
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 
