@@ -2,10 +2,15 @@ package com.synechron.training.basics.utils;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
+import java.util.Date;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,6 +24,24 @@ public class DriverUtils {
 
 	public static WebDriver driver = null;
 
+	public static void getScreenshot()
+	{
+		TakesScreenshot ss = (TakesScreenshot) driver;
+		File srcFile = ss.getScreenshotAs(OutputType.FILE);
+		try {
+			FileUtils.copyFile(srcFile, new File("reports\\screeshots\\SS_" + ActitimeUtils.getDateAndtime() + ".png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public static String getDateAndtime() {
+		Date d  = new Date();
+		String dateandtime = d.toString().replace(" ", "_").replace(":", "_");
+		System.out.println(dateandtime);
+		return dateandtime;
+	
+	}
 	public static String getConfigValue(String key)
 	{
 		String str = null;

@@ -42,8 +42,8 @@ public class ActitimeUtils extends DriverUtils
 	public  static void loginToActitime(String un, String pwd)
 	{
 		System.out.println("logging into applicaiont with username " + un + " and password " + pwd);
-		typeOnElement("id", "username", "admin");
-		typeOnElement("name", "pwd", "manager");
+		typeOnElement("id", "username", un);
+		typeOnElement("name", "pwd", pwd);
 		clickOnElement("id", "loginButton");
 		try {
 			Thread.sleep(3000);
@@ -55,7 +55,19 @@ public class ActitimeUtils extends DriverUtils
 	
 	
 	public static void createProject(String customerName, String projectName, String projectDescription ){
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		typeOnElement("id", "projectPopup_projectNameField",projectName);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		clickOnElement("id", "projectPopup_customerSelectorPlaceholder");
 		
 		WebDriverWait wait1 = new WebDriverWait(driver, 10);
