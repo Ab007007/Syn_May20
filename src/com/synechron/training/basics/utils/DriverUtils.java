@@ -24,6 +24,12 @@ public class DriverUtils {
 
 	public static WebDriver driver = null;
 
+	/**
+	 * Utility to capture a screen shot of an application
+	 * default location to find the screen shot is reports\\screeshots\\SS_<<DATEANDTIME>>0
+	 * @author Aravind
+	 * 
+	 */
 	public static void getScreenshot()
 	{
 		TakesScreenshot ss = (TakesScreenshot) driver;
@@ -35,6 +41,12 @@ public class DriverUtils {
 			e.printStackTrace();
 		}
 	}
+
+	/**
+	 * function to return current date and time with out any 
+	 * special characters
+	 * @return - String
+	 */
 	public static String getDateAndtime() {
 		Date d  = new Date();
 		String dateandtime = d.toString().replace(" ", "_").replace(":", "_");
@@ -42,6 +54,14 @@ public class DriverUtils {
 		return dateandtime;
 	
 	}
+	
+	/**
+	 * function to get the config values stored in 
+	 * config.properties file 
+	 * @author Aravind
+	 * @param key -  url,username,password,browser,datafile
+	 * @return - values stored for the above keys
+	 */
 	public static String getConfigValue(String key)
 	{
 		String str = null;
@@ -81,7 +101,11 @@ public class DriverUtils {
 		return driver;
 
 	}
-	
+	/**
+	 * creating a web driver for the given type
+	 * @param type - ff,chrome,ie
+	 * @return - Browser
+	 */
 	public static WebDriver getMyDriver(String type) {
 		System.out.println("Creating a webdriver object for "  +type);
 		switch (type) {
@@ -116,6 +140,12 @@ public class DriverUtils {
 
 	}
 
+	/**
+	 * @author Aravind
+	 * @param locator - id,name,classname,tagname,linktext,partiallinktext,css,xpath
+	 * @param locatorValue - String
+	 * @return - WebElement
+	 */
 	public static WebElement getMyElement(String locator, String locatorValue) {
 		WebElement ele = null;
 		System.out.println("Finding the element with " + locator + " and " + locatorValue);
@@ -155,7 +185,12 @@ public class DriverUtils {
 
 	}
 
-	
+	/**
+	 * @author Aravind
+	 * @param locator- id,name,classname,tagname,linktext,partiallinktext,css,xpath
+	 * @param locatorValue - String 
+	 * @param textTotype - AnyString
+	 */
 	public static void typeOnElement(String locator,String locatorValue,String textTotype)
 	{
 		System.out.println("------------Entering text " + textTotype);
@@ -163,7 +198,11 @@ public class DriverUtils {
 		System.out.println("------------Entered Text on element successfully");
 	}
 	
-	
+	/**
+	 * 
+	 * @param locator- id,name,classname,tagname,linktext,partiallinktext,css,xpath
+	 * @param locatorValue
+	 */
 	public static void clickOnElement(String locator,String locatorValue)
 	{
 		System.out.println("-------------clicking on element " );
@@ -172,6 +211,12 @@ public class DriverUtils {
 	}
 	
 	
+	/**
+	 * 
+	 * @param locator - id,name,classname,tagname,linktext,partiallinktext,css,xpath
+	 * @param locatorValue
+	 * @return -String
+	 */
 	public static String getTextOnElement(String locator, String locatorValue)
 	{
 		String text = null;

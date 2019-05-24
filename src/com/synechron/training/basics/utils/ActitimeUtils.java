@@ -10,6 +10,11 @@ import org.testng.Assert;
 public class ActitimeUtils extends DriverUtils
 {
 
+	/**
+	 * creates a customer in actitime application for the parameters passed
+	 * @param customerName
+	 * @param customerDesc
+	 */
 	public static void createCustomer(String customerName,String customerDesc)
 	{
 		typeOnElement("id", "customerLightBox_nameField", customerName);
@@ -23,7 +28,11 @@ public class ActitimeUtils extends DriverUtils
 		wait.until(ExpectedConditions.invisibilityOf(getMyElement
 				("xpath", "//div[@class='toast']")));
 	}
-	
+	/**
+	 * launch the application for the given url
+	 * @author Aravind
+	 * @param url
+	 */
 	public static void launchApplication(String url)
 	{
 		System.out.println("Launching the application " + url);
@@ -32,6 +41,11 @@ public class ActitimeUtils extends DriverUtils
 	
 	}
 	
+	/**
+	 * Asserts the given title is correct or not
+	 * @author Aravind
+	 * @param expectedTitle
+	 */
 	public static void validateTitle(String expectedTitle)
 	{
 		String actualTitle = driver.getTitle();
@@ -39,6 +53,12 @@ public class ActitimeUtils extends DriverUtils
 		Assert.assertEquals(actualTitle, expectedTitle);
 	}
 	
+	/**
+	 * login utility to login to the application with a 
+	 * given credentials
+	 * @param un
+	 * @param pwd
+	 */
 	public  static void loginToActitime(String un, String pwd)
 	{
 		System.out.println("logging into applicaiont with username " + un + " and password " + pwd);
@@ -53,7 +73,12 @@ public class ActitimeUtils extends DriverUtils
 		}
 	}
 	
-	
+	/**
+	 * creates a project for a given values
+	 * @param customerName - String
+	 * @param projectName - String 
+	 * @param projectDescription -String
+	 */
 	public static void createProject(String customerName, String projectName, String projectDescription ){
 		try {
 			Thread.sleep(5000);
@@ -92,30 +117,45 @@ public class ActitimeUtils extends DriverUtils
 	
 	
 	
-	
+	/**
+	 * logout of the application
+	 */
 	public static void logout()
 	{
 		clickOnElement("id", "logoutLink");
 	}
+	
+	/**
+	 * to click on Tasks  - no arguments is required
+	 */
 	public static void clickOnTasks()
 	{
 		clickOnElement("xpath", "//a[div[text()='TASKS']]");
 		validateTitle("actiTIME - Task List");
 	}
 	
+	/**
+	 * function ot click on Time Track present in the Dashboard page
+	 */
 	public static void clickOnTT()
 	{
 		clickOnElement("xpath", "//a[div[text()='TIME-TRACK']]");
 		validateTitle("actiTIME - Enter Time-Track");
 	}
-	
+	/**
+	 * function to click on create customer button present in tasks page
+	 * 
+	 */
 	public static void clickOnCreateCutomerButton()
 	{
 		clickOnElement("xpath", "//div[@class='addNewContainer']");
 		clickOnElement("xpath", "//div[contains(text(),'New Customer')]");
 		
 	}
-	
+	/**
+	 * function to click on create Project button present in tasks page
+	 * 
+	 */
 	public static void clickOnCreateProjectButton()
 	{
 		clickOnElement("xpath", "//div[@class='addNewContainer']");
