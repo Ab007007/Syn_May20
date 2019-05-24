@@ -5,19 +5,14 @@ import java.net.URL;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Platform;
-import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
-
-import com.synechron.training.basics.utils.ActitimeUtils;
 
 public class LoginUsingGrid {
 
@@ -25,11 +20,20 @@ public class LoginUsingGrid {
 	public void loginTest1() throws MalformedURLException {
 		String nodeUrl = "http://192.168.1.102:5556/wd/hub";
 
-		ChromeOptions options = new ChromeOptions();
-		options.setCapability(CapabilityType.PLATFORM_NAME, Platform.WINDOWS);
-		options.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.ACCEPT);
+		/*
+		 * ChromeOptions options = new ChromeOptions();
+		 * options.setCapability(CapabilityType.PLATFORM_NAME, Platform.WINDOWS);
+		 * options.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR,
+		 * UnexpectedAlertBehaviour.ACCEPT);
+		 * options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+		 * options.addArguments("disable-infobars");
+		 */
+		
+		FirefoxOptions options = new FirefoxOptions();
+		options.setCapability(CapabilityType.BROWSER_NAME, "firefox");
+		options.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, true);
+		options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 		options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-		options.addArguments("disable-infobars");
 
 		WebDriver driver = new RemoteWebDriver(new URL(nodeUrl), options);
 
