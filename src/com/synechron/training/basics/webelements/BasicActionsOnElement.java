@@ -23,14 +23,20 @@ public class BasicActionsOnElement {
 		 * 
 		 * formLink.click();
 		 */
+		
+	
+		
 		driver.findElement(By.linkText("Form")).click();
+		
+		
 		driver.findElement(By.id("first-name")).sendKeys("firstUser");
 		driver.findElement(By.id("last-name")).sendKeys("lastName");
 		driver.findElement(By.xpath("//input[@placeholder='Enter your job title']")).sendKeys("Architect");
 		driver.findElement(By.id("radio-button-1")).click();
 		driver.findElement(By.id("checkbox-1")).click();
 	
-		Select sel  = new Select(driver.findElement(By.id("select-menu")));
+		WebElement dropDownElement = driver.findElement(By.id("select-menu"));
+		Select sel  = new Select(dropDownElement);
 		
 		Thread.sleep(3000);
 		sel.selectByVisibleText("5-9");

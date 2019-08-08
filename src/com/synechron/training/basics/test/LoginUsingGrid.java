@@ -18,7 +18,7 @@ public class LoginUsingGrid {
 
 	@Test
 	public void loginTest1() throws MalformedURLException {
-		String nodeUrl = "http://192.168.1.102:5556/wd/hub";
+		String nodeUrl = "http://localhost:4444/wd/hub";
 
 		/*
 		 * ChromeOptions options = new ChromeOptions();
