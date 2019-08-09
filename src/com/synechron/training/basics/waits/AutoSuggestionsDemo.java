@@ -19,7 +19,7 @@ public class AutoSuggestionsDemo {
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.get("https://www.google.com/");
 		
-		driver.findElement(By.name("q")).sendKeys("Synechron");
+		driver.findElement(By.name("q")).sendKeys("UBS");
 		
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		
@@ -32,7 +32,7 @@ public class AutoSuggestionsDemo {
 		
 		for(WebElement suggestion:autoSuggestions)
 		{
-			System.out.println(suggestion.getText());
+			System.out.println(suggestion.getAttribute("role") + " -- " + suggestion.getText());
 		}
 		
 		

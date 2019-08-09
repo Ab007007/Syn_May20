@@ -21,7 +21,7 @@ public class ExplicitWaitDemo {
 		
 		driver.findElement(By.xpath("//button")).click();
 		
-		WebDriverWait wait  = new WebDriverWait(driver, 20);
+		WebDriverWait wait  = new WebDriverWait(driver, 4);
 		WebElement dynamicEle = wait.until(ExpectedConditions.visibilityOf
 				(driver.findElement(By.id("demo"))));
 		

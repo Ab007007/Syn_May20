@@ -24,7 +24,7 @@ public class FluentWaitDemo {
 		
 		FluentWait<WebElement> wait = new FluentWait<WebElement>(driver.findElement(By.id("demo")))
 				.withTimeout(Duration.ofSeconds(20))
-				.pollingEvery(Duration.ofMillis(50))
+				.pollingEvery(Duration.ofMillis(1000))
 				.ignoring(NoSuchElementException.class)
 				.ignoring(NullPointerException.class);
 		Function<WebElement, Boolean> fun = new Function<WebElement, Boolean>() {

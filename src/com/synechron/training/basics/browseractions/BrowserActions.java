@@ -19,6 +19,7 @@ public class BrowserActions
 		driver.navigate().refresh();
 		driver.manage().window().fullscreen();
 		driver.manage().window().maximize();
+		driver.navigate().to("https://www.google.com/");
 		System.out.println(driver.getCurrentUrl());
 		System.out.println(driver.getTitle());
 		
